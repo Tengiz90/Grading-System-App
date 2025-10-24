@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Homework5.RegisterPage"
+             Title="Register">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            <Entry x:Name="idEntry" Placeholder="ID" ClearButtonVisibility="WhileEditing" />
+            <Entry x:Name="firstNameEntry" Placeholder="First Name" ClearButtonVisibility="WhileEditing" />
+            <Entry x:Name="lastNameEntry" Placeholder="Last Name"  ClearButtonVisibility="WhileEditing"/>
+
+            <VerticalStackLayout>
+                <Label Text="Date of birth:"  />
+                <DatePicker x:Name="dobPicker" />
+            </VerticalStackLayout>
+
+            <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="True"  ClearButtonVisibility="WhileEditing"/>
+            <Entry x:Name="repeatPasswordEntry" Placeholder="Repeat Password" IsPassword="True"  ClearButtonVisibility="WhileEditing"/>
+
+
+            <VerticalStackLayout>
+                <Label Text="Role:" />
+                <HorizontalStackLayout Spacing="15"  >
+                    <RadioButton x:Name="studentRadio" Content="Student" CheckedChanged="OnRoleChanged"/>
+                    <RadioButton x:Name="lecturerRadio" Content="Lecturer" CheckedChanged="OnRoleChanged"  Margin="0"/>
+                </HorizontalStackLayout>
+
+                <Entry x:Name="majorEntry" Placeholder="Major" IsVisible="False" />
+            </VerticalStackLayout>
+
+            <Button Text="Finish" Clicked="OnFinishClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

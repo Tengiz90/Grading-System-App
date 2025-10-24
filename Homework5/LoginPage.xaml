@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Homework5.LoginPage"
+             Title="Login">
+
+    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+       
+        <Entry x:Name="idEntry"
+               Placeholder="Enter your ID"
+               ClearButtonVisibility="WhileEditing" />
+
+        <Entry x:Name="passwordEntry"
+               Placeholder="Enter your password"
+               IsPassword="True" 
+               ClearButtonVisibility="WhileEditing"/>
+
+        <Button Text="Login"
+                Clicked="OnLoginClicked"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                CornerRadius="10" />
+
+        <Label x:Name="errorLabel"
+               TextColor="Red"
+               IsVisible="False"
+               HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>
