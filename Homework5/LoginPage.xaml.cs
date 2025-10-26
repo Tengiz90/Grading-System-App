@@ -49,6 +49,8 @@ namespace Homework5
                     await DisplayAlert("Success", $"Welcome, {student.FirstName} {student.LastName}!", "OK");
                     errorLabel.IsVisible = false;
                     await Navigation.PushAsync(new CoursesForStudentsPage(_data, student.Id));
+                    resetUI();
+                    return;
                 }
             }
             else if (_selectedRole == "Lecturer")
@@ -59,6 +61,8 @@ namespace Homework5
                     await DisplayAlert("Success", $"Welcome, {lecturer.FirstName} {lecturer.LastName}!", "OK");
                     errorLabel.IsVisible = false;
                     await Navigation.PushAsync(new CoursesOfLecturerPage(_data, lecturer.Id));
+                    resetUI();
+                    return;
                 }
             } else
             {
@@ -73,6 +77,19 @@ namespace Homework5
         {
             errorLabel.Text = message;
             errorLabel.IsVisible = true;
+        }
+
+        public void resetUI()
+        {
+            idEntry.Text = string.Empty;
+            passwordEntry.Text = string.Empty;
+
+            studentRadio.IsChecked = false;
+            lecturerRadio.IsChecked = false;
+            _selectedRole = string.Empty;
+
+            errorLabel.Text = string.Empty;
+            errorLabel.IsVisible = false;
         }
     }
 }
