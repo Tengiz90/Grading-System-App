@@ -29,7 +29,7 @@
 
                                 <HorizontalStackLayout Spacing="10">
                                     <Button Text="{Binding ButtonText}"
-                                        Clicked="OnEnrollClicked"
+                                        Clicked="OnEnrollToggleClicked"
                                         BackgroundColor="#007AFF"
                                         TextColor="White"
                                         CornerRadius="10"
@@ -41,7 +41,8 @@
                                         BackgroundColor="#34C759"
                                         TextColor="White"
                                         CornerRadius="10"
-                                        CommandParameter="{Binding .}" />
+                                        CommandParameter="{Binding .}"
+                                        IsVisible="{Binding IsEnrolled}"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Border>

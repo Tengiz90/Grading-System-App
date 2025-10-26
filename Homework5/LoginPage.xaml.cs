@@ -1,38 +1,78 @@
+using Homework5.Data;
 using Microsoft.Maui.Controls;
 using System;
+using System.Linq;
 
 namespace Homework5
 {
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
+        private readonly DataSourceManager _data;
+        private string _selectedRole = ""; 
+
+        public LoginPage(DataSourceManager data)
         {
             InitializeComponent();
+            _data = data;
+        }
+
+        private void OnRoleChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (studentRadio.IsChecked)
+                _selectedRole = "Student";
+            else if (lecturerRadio.IsChecked)
+                _selectedRole = "Lecturer";
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
-            string id = idEntry.Text?.Trim();
-            string password = passwordEntry.Text;
+            string idText = idEntry.Text?.Trim();
+            string password = passwordEntry.Text?.Trim();
 
-            if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(idText) || string.IsNullOrEmpty(password))
             {
-                errorLabel.Text = "Please enter both ID and password.";
-                errorLabel.IsVisible = true;
+                ShowError("Please enter both ID and password.");
                 return;
             }
 
-            if (id == "123" && password == "test")
+            if (!int.TryParse(idText, out int id))
             {
-                errorLabel.IsVisible = false;
-                await DisplayAlert("Success", "Login successful!", "OK");
+                ShowError("Invalid ID format. ID must be a number.");
+                return;
+            }
 
-            }
-            else
+            if (_selectedRole == "Student")
             {
-                errorLabel.Text = "Invalid ID or password.";
-                errorLabel.IsVisible = true;
+                var student = _data.Students.FirstOrDefault(s => s.Id == id && s.Password == password);
+                if (student != null)
+                {
+                    await DisplayAlert("Success", $"Welcome, {student.FirstName} {student.LastName}!", "OK");
+                    errorLabel.IsVisible = false;
+                    await Navigation.PushAsync(new CoursesForStudentsPage(_data, student.Id));
+                }
             }
+            else if (_selectedRole == "Lecturer")
+            {
+                var lecturer = _data.Lecturers.FirstOrDefault(l => l.Id == id && l.Password == password);
+                if (lecturer != null)
+                {
+                    await DisplayAlert("Success", $"Welcome, {lecturer.FirstName} {lecturer.LastName}!", "OK");
+                    errorLabel.IsVisible = false;
+                    await Navigation.PushAsync(new CoursesOfLecturerPage(_data, lecturer.Id));
+                }
+            } else
+            {
+                ShowError("Please select a role.");
+                return;
+            }
+
+            ShowError("Invalid ID or password.");
+        }
+
+        private void ShowError(string message)
+        {
+            errorLabel.Text = message;
+            errorLabel.IsVisible = true;
         }
     }
 }

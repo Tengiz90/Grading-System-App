@@ -16,6 +16,14 @@
                 <LinearItemsLayout Orientation="Vertical"
                          ItemSpacing="8" />
             </CollectionView.ItemsLayout>
+            <CollectionView.EmptyView>
+                <Label Text="No students currently enrolled in this course."
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               FontSize="16"
+               TextColor="Gray"
+               Margin="20" />
+            </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border Stroke="Gray"

@@ -5,78 +5,78 @@
              Title="Marks">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="10" HorizontalOptions="Start">
+        <VerticalStackLayout  Padding="20" Spacing="10" HorizontalOptions="Center">
 
-            <Label x:Name="studentLabel"
+            <Label x:Name="studentForCourseMarksLabel"
                    FontSize="22"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
-                   Margin="0,10,0,0" />
+                   Margin="0,5,0,0" />
 
      
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Homework 1:" FontAttributes="Bold" />
-                <Label x:Name="Homework1Label" />
+                <Label x:Name="homework1Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                <Label Text="Homework 2:" FontAttributes="Bold" />
-                <Label x:Name="Homework2Label" />
+                <Label Text="homework 2:" FontAttributes="Bold" />
+                <Label x:Name="homework2Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Homework 3:" FontAttributes="Bold" />
-                <Label x:Name="Homework3Label" />
+                <Label x:Name="homework3Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Homework 4:" FontAttributes="Bold" />
-                <Label x:Name="Homework4Label" />
+                <Label x:Name="homework4Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Homework 5:" FontAttributes="Bold" />
-                <Label x:Name="Homework5Label" />
+                <Label x:Name="homework5Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Homework 6:" FontAttributes="Bold" />
-                <Label x:Name="Homework6Label" />
+                <Label x:Name="homework6Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Homework 7:" FontAttributes="Bold" />
-                <Label x:Name="Homework7Label" />
+                <Label x:Name="homework7Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Homework 8:" FontAttributes="Bold" />
-                <Label x:Name="Homework8Label" />
+                <Label x:Name="homework8Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Homework 9:" FontAttributes="Bold" />
-                <Label x:Name="Homework9Label" />
+                <Label x:Name="homework9Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Homework 10:" FontAttributes="Bold" />
-                <Label x:Name="Homework10Label" />
+                <Label x:Name="homework10Label" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Midterm Exam:" FontAttributes="Bold" />
-                <Label x:Name="MidtermExamLabel" />
+                <Label x:Name="midtermExamLabel" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Presentation:" FontAttributes="Bold" />
-                <Label x:Name="PresentationLabel" />
+                <Label x:Name="presentationLabel" />
             </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
                 <Label Text="Final Exam:" FontAttributes="Bold" />
-                <Label x:Name="FinalExamLabel" />
+                <Label x:Name="finalExamLabel" />
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

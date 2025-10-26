@@ -15,6 +15,15 @@
                IsPassword="True" 
                ClearButtonVisibility="WhileEditing"/>
 
+
+        <VerticalStackLayout>
+            <Label Text="Role:" />
+            <HorizontalStackLayout Spacing="15"  >
+                <RadioButton x:Name="studentRadio" Content="Student" CheckedChanged="OnRoleChanged"/>
+                <RadioButton x:Name="lecturerRadio" Content="Lecturer" CheckedChanged="OnRoleChanged"  Margin="0"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
         <Button Text="Login"
                 Clicked="OnLoginClicked"
                 BackgroundColor="#007AFF"

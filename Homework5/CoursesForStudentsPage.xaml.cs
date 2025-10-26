@@ -1,3 +1,4 @@
+using Homework5.Data;
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 
@@ -5,41 +6,62 @@ namespace Homework5
 {
     public partial class CoursesForStudentsPage : ContentPage
     {
+        private readonly DataSourceManager _data;
+        private readonly int _studentId;
         public ObservableCollection<CourseForStudents> Courses { get; set; }
 
-        public CoursesForStudentsPage()
+        public CoursesForStudentsPage(DataSourceManager data, int studentId)
         {
-            InitializeComponent();
 
-            Courses = new ObservableCollection<CourseForStudents>
-            {
-                new CourseForStudents { Name = "Object-Oriented Programming"},
-                new CourseForStudents { Name = "Database Systems." },
-                new CourseForStudents { Name = "Mobile App Development"},
-                new CourseForStudents { Name = "Web Development"},
-                new CourseForStudents { Name = "Data Structures" }
-            };
+            InitializeComponent();
+            _data = data;
+            _studentId = studentId;
+
+            Courses = new ObservableCollection<CourseForStudents>(
+                _data.Courses.Select(c => new CourseForStudents
+                {
+                    Name = c.Name,
+                    Id = c.Id,
+                    IsEnrolled = _data.Marks.Any(m => m.StudentId == studentId && m.CourseId == c.Id),
+                    ButtonText = _data.Marks.Any(m => m.StudentId == studentId && m.CourseId == c.Id)
+                        ? "Unenroll"
+                        : "Enroll"
+                })
+            );
 
             BindingContext = this;
         }
 
-        private void OnEnrollClicked(object sender, EventArgs e)
+        private void OnEnrollToggleClicked(object sender, EventArgs e)
         {
             if (sender is Button button && button.CommandParameter is CourseForStudents course)
             {
-                course.IsEnrolled = !course.IsEnrolled;
-                course.ButtonText = course.IsEnrolled ? "Unenroll" : "Enroll";
+                var courseEntity = _data.Courses.FirstOrDefault(c => c.Name == course.Name);
+                if (courseEntity == null) return;
+
+                if (course.IsEnrolled)
+                {
+                    _data.UnenrollStudentInTheCourse(_studentId, courseEntity.Id);
+                    course.IsEnrolled = false;
+                    course.ButtonText = "Enroll";
+                }
+                else
+                {
+                    _data.EnrollStudentInTheCourse(_studentId, courseEntity.Id);
+                    course.IsEnrolled = true;
+                    course.ButtonText = "Unenroll";
+                }
             }
         }
 
-        private void OnSeeMarksClicked(object sender, EventArgs e)
+        private async void OnSeeMarksClicked(object sender, EventArgs e)
         {
             var button = sender as Button;
             var course = button?.CommandParameter as CourseForStudents;
             if (course != null)
             {
-                // Navigate to a Marks page or display course marks
-                DisplayAlert("Marks", $"Showing marks for {course.Name}", "OK");
+                await Navigation.PushAsync(new ShowMarksPage(_data, _studentId, course.Id));
+
             }
         }
     }
@@ -50,7 +72,9 @@ namespace Homework5
         private string buttonText = "Enroll";
 
         public string Name { get; set; }
-       
+        public int Id { get; set; }
+
+
 
         public bool IsEnrolled
         {
@@ -78,6 +102,6 @@ namespace Homework5
             }
         }
 
-     
+
     }
 }

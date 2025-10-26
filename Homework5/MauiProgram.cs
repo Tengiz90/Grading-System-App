@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Homework5.Data;
+using Microsoft.Extensions.Logging;
 
 namespace Homework5
 {
@@ -18,7 +19,7 @@ namespace Homework5
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<DataSourceManager>();
             return builder.Build();
         }
     }
